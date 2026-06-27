@@ -601,7 +601,7 @@ async function sendMessage() {
     console.log('API Response:', JSON.stringify(data));
     console.log('HTTP Status:', res.status);
 
-    if (data.error) throw new Error('API_ERROR: ' + (data.error.message || JSON.stringify(data.error)));
+    if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
     if (!res.ok) throw new Error('HTTP ' + res.status);
 
     let reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not get a response. Please try again.';
@@ -619,13 +619,17 @@ async function sendMessage() {
     removeTyping();
     let errMsg = '';
     const msg = err.message || '';
-    console.error('API Error full:', msg);
+    console.error('API Error:', msg);
     if (msg.includes('quota') || msg.includes('limit') || msg.includes('RESOURCE_EXHAUSTED')) {
-      errMsg = 'I am currently unavailable due to high usage. Please try again after 1:00 PM Pakistan time when the quota resets.';
+      errMsg = 'I am currently unavailable due to high usage. Please try again after 1:00 PM Pakistan time when the quota resets. You can also contact us directly at 0321-1306560.';
+    } else if (msg.includes('demand') || msg.includes('overload') || msg.includes('503') || msg.includes('529')) {
+      errMsg = 'Our assistant is experiencing high demand right now. Please try again in a few seconds or contact Akbar & Sons at 0321-1306560.';
     } else if (msg.includes('API_KEY') || msg.includes('auth') || msg.includes('401') || msg.includes('403')) {
-      errMsg = 'DEBUG - Auth error: ' + msg;
+      errMsg = 'There seems to be a configuration issue. Please contact Akbar & Sons at 0321-1306560 for assistance.';
+    } else if (msg.includes('network') || msg.includes('fetch') || msg.includes('Failed')) {
+      errMsg = 'Unable to connect. Please check your internet connection and try again.';
     } else {
-      errMsg = 'DEBUG - Error: ' + msg;
+      errMsg = 'Sorry, I am unable to respond at the moment. Please try again or contact Akbar & Sons directly at 0321-1306560.';
     }
     addMessage('bot', errMsg);
   } finally {

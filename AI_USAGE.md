@@ -5,7 +5,7 @@
 - **API:** Google Generative Language API (v1beta)
 - **Frontend:** Plain HTML, CSS, JavaScript (single file)
 - **Video Background:** Mux HLS Stream via HLS.js
-- **Hosting:** Netlify (live deployment)
+- **Hosting:** GiitHub (live deployment)
 
 ---
 

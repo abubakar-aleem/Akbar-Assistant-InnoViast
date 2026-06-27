@@ -123,7 +123,3 @@ Bot: Prices may vary depending on the product, brand, and market conditions. Ple
 - No personal information is collected from customers
 - The chatbot never makes up prices, stock availability, or product details
 
----
-
-*Akbar Assistant — Built for Akbar & Sons Sanitary Store, Lahore, Pakistan*
-*Developed as Week 1 Assignment — Innoviast IT Solutions & Services Internship*
